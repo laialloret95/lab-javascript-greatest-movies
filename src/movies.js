@@ -4,7 +4,7 @@ import { movies } from './data.js'
 function getAllDirectors(movies) {
     let allDirectors = movies.map(function(movie) {
         return movie.director;
-    })
+    });
     return allDirectors;
 }
 
@@ -14,17 +14,17 @@ function getAllDirectors(movies) {
 function howManyMovies(movies) {
     let spielbergDramas = movies.filter(function(movie) {
         return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");
-    })
+    });
     return spielbergDramas;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
-    let rates = movies.map(function(movie) {
-        return movie.rate;
-    });
-    let sumRates = rates.reduce((a,b) => a + b, 0);
-    let averageRates = sumRates / rates.length;
+    let sumRates = movies.reduce(function(acc,movie) {
+        return acc + movie.rate;
+    }, 0);
+    
+    let averageRates = sumRates / movies.length;
     return Math.round(averageRates * 100) / 100;
 }
 
