@@ -1,8 +1,17 @@
 import { movies } from './data.js'
 
 // Iteration 1: All directors? - Get the array of all directors.
+function getAllDirectors(movies) {
+    let allDirectors = movies.map(function(movie) {
+        return movie.director
+    })
+    return allDirectors
+}
+
+console.log(getAllDirectors(movies))
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-console.log(movies[0].title)
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
