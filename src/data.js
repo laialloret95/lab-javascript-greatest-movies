@@ -1,3 +1,5 @@
+export { movies };
+
 let movies = [
     {
       "title": "The Shawshank Redemption",
