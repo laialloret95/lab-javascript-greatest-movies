@@ -72,13 +72,13 @@ function orderAlphabetically(movies) {
 function turnHoursToMinutes(movies) {
     let newMovies = movies;
     newMovies.forEach(function(movie) {
-        movie.duration = movie.duration.replace(/[^\d.-]/g, ''); // extract only numbers
+        movie.duration = movie.duration.replace(/[^\d.-]/g, ''); // extract numbers only
         let minutes = parseInt(movie.duration.slice(-2)); // select minutes
-        let hours = parseInt(movie.duration.substring(0,1)); // select hours
+        let hours = parseInt(movie.duration[0]); // select hours
         movie.duration = (hours * 60) + minutes; // convert hours and add minutes
     });
     return newMovies
-} 
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies) {
