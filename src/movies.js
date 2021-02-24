@@ -69,14 +69,16 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-// function turnHoursToMinutes(movies) {
-//     let newMovies = movies.map(function(movie){
-//         movie.duration.split(' ')
-//     });
-//     return newMovies
-// } 
-
-// console.log(turnHoursToMinutes(movies))
+function turnHoursToMinutes(movies) {
+    let newMovies = movies;
+    newMovies.forEach(function(movie) {
+        movie.duration = movie.duration.replace(/[^\d.-]/g, ''); // extract only numbers
+        let minutes = parseInt(movie.duration.slice(-2)); // select minutes
+        let hours = parseInt(movie.duration.substring(0,1)); // select hours
+        movie.duration = (hours * 60) + minutes; // convert hours and add minutes
+    });
+    return newMovies
+} 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies) {
