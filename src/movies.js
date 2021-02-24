@@ -7,8 +7,15 @@ function getAllDirectors(movies) {
     });
     return allDirectors;
 }
-
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+function uniqueDirectors(movies) {
+    let allDirectors = getAllDirectors(movies);
+    let uniqueDirectors = allDirectors.filter(function(director,index,arr){
+
+        return arr.indexOf(director) == index;
+    });
+    return uniqueDirectors
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
@@ -98,5 +105,3 @@ function bestYearAvg(movies) {
     let BestYear = moviesByYear[0];
     return `The best year was ${BestYear.year} with an average rate of  ${BestYear.average}`
 }
-
-console.log(bestYearAvg(movies))
