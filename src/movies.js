@@ -7,11 +7,11 @@ function getAllDirectors(movies) {
     });
     return allDirectors;
 }
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 function uniqueDirectors(movies) {
     let allDirectors = getAllDirectors(movies);
     let uniqueDirectors = allDirectors.filter(function(director,index,arr){
-
         return arr.indexOf(director) == index;
     });
     return uniqueDirectors
@@ -94,11 +94,11 @@ function bestYearAvg(movies) {
     // Calculate average per year
     moviesByYear.forEach(function(movie) {
             movie.average = Math.round((movie.rate / movie.count) * 100) / 100;
-        });
+    });
 
     moviesByYear.sort(function(a,b) {
-        if (a.average > b.average) { return -1}
-        else if (a.average < b.average) { return 1}
+        if (a.average > b.average) {return -1}
+        else if (a.average < b.average) {return 1}
         return 0;
     });
 
