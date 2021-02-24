@@ -62,5 +62,41 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+// function turnHoursToMinutes(movies) {
+//     let newMovies = movies.map(function(movie){
+//         movie.duration.split(' ')
+//     });
+//     return newMovies
+// } 
+
+// console.log(turnHoursToMinutes(movies))
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movies) {
+    // Calculate the sums and group data (while tracking count)
+    let moviesByYear = movies.reduce(function(m, d){
+        if(!m[d.year]){
+            m[d.year] = {...d, count: 1};
+            return m;
+        }
+        m[d.year].rate += d.rate;
+        m[d.year].count += 1;
+        return m;
+    },[]);
+
+    // Calculate average per year
+    moviesByYear.forEach(function(movie) {
+            movie.average = Math.round((movie.rate / movie.count) * 100) / 100;
+        });
+
+    moviesByYear.sort(function(a,b) {
+        if (a.average > b.average) { return -1}
+        else if (a.average < b.average) { return 1}
+        return 0;
+    });
+
+    let BestYear = moviesByYear[0];
+    return `The best year was ${BestYear.year} with an average rate of  ${BestYear.average}`
+}
+
+console.log(bestYearAvg(movies))
