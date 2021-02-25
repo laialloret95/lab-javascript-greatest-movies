@@ -80,18 +80,27 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-    let newMovies = movies;
-    newMovies.forEach(function(movie) {
-        movie.duration = movie.duration.replace(/[^\d.-]/g, ''); // extract numbers only
-        let minutes = parseInt(movie.duration.slice(-2)); // select minutes
-        let hours = parseInt(movie.duration[0]); // select hours
-        movie.duration = (hours * 60) + minutes; // convert hours and add minutes
+    let copyMovies =  movies.slice();
+    copyMovies.forEach(function(movie) {
+        movie.duration = movie.duration.replace(/[^\d.-]/g, ''); // extract numbers
+        if (movie.duration.length === 1) {
+            let hours = parseInt(movie.duration); // select hours
+            movie.duration = (hours * 60); // convert hours and add minutes
+        } else if (movie.duration.length === 2) {
+            let minutes = parseInt(movie.duration);
+            movie.duration = minutes;
+        } else {
+            let minutes = parseInt(movie.duration.slice(-2)); // select minutes
+            let hours = parseInt(movie.duration[0]); // select hours
+            movie.duration = (hours * 60) + minutes; // convert hours and add minutes
+        }
     });
-    return newMovies
+	return copyMovies
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies) {
+	if (movies.length === 0) return null;
     // Calculate the sums and group data (while tracking count)
     let moviesByYear = movies.reduce(function(m, d){
         if(!m[d.year]){
