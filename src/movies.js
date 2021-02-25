@@ -1,4 +1,4 @@
-import { movies } from './data.js'
+// import { movies } from './data.js'
 
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(movies) {
@@ -22,18 +22,24 @@ function howManyMovies(movies) {
     let spielbergDramas = movies.filter(function(movie) {
         return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");
     });
-    return spielbergDramas;
+    return spielbergDramas.length;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
+	if (movies.length > 0) {
     let sumRates = movies.reduce(function(acc,movie) {
-        return acc + movie.rate;
+				if(movie.rate) {
+        	return acc + movie.rate;
+				} else {
+					return acc + 0;
+				};
     }, 0);
-    
-    let averageRates = sumRates / movies.length;
+	 	let averageRates = sumRates / movies.length;
     return Math.round(averageRates * 100) / 100;
-}
+	 } else
+	 	return 0;
+};
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(movies) {
@@ -46,7 +52,7 @@ function dramaMoviesRate(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-    let sortedByYear = movies.sort(function(a,b){
+    let sortedByYear = movies.slice().sort(function(a,b){
         if (a.year < b.year) { return -1 } 
         else if (a.year > b.year){ return 1} 
         else { // if years are the same order aphabetically by title
@@ -60,12 +66,16 @@ function orderByYear(movies) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-    let sortedByTitle = movies.sort(function(a,b){
+    let sortedByTitle = movies.slice().sort(function(a,b){
         if(a.title < b.title) { return -1; }
         if(a.title > b.title) { return 1; }
         return 0;
     });
-    return sortedByTitle.slice(0,20);
+    let first20Movies = sortedByTitle.slice(0,20);
+    let titleName = first20Movies.map(function(movie) {
+			return movie.title
+		});
+		return titleName
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
