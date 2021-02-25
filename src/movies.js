@@ -28,17 +28,17 @@ function howManyMovies(movies) {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
 	if (movies.length > 0) {
-    let sumRates = movies.reduce(function(acc,movie) {
-				if(movie.rate) {
-        	return acc + movie.rate;
-				} else {
-					return acc + 0;
-				};
-    }, 0);
-	 	let averageRates = sumRates / movies.length;
-    return Math.round(averageRates * 100) / 100;
-	 } else
-	 	return 0;
+        let sumRates = movies.reduce(function(acc,movie) {
+                    if(movie.rate) {
+                return acc + movie.rate;
+                    } else {
+                        return acc + 0;
+                    };
+        }, 0);
+        let averageRates = sumRates / movies.length;
+        return Math.round(averageRates * 100) / 100;
+	} else
+	    return 0;
 };
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -73,9 +73,9 @@ function orderAlphabetically(movies) {
     });
     let first20Movies = sortedByTitle.slice(0,20);
     let titleName = first20Movies.map(function(movie) {
-			return movie.title
-		});
-		return titleName
+		return movie.title
+	});
+	return titleName
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
@@ -83,19 +83,19 @@ function turnHoursToMinutes(movies) {
     let copyMovies = movies.map(obj => ({...obj})); // cloning movies array into new one
     copyMovies.forEach(function(movie) {
         movie.duration = movie.duration.replace(/[^\d.-]/g, ''); // extract numbers
-				if (movie.duration.length === 1) {
-					let hours = parseInt(movie.duration); // select hours
-        	movie.duration = (hours * 60); // convert hours and add minutes
-				} else if (movie.duration.length === 2) {
-					let minutes = parseInt(movie.duration);
-					movie.duration = minutes;
-				} else {
-					let minutes = parseInt(movie.duration.slice(-2)); // select minutes
-        	let hours = parseInt(movie.duration[0]); // select hours
-        	movie.duration = (hours * 60) + minutes; // convert hours and add minutes
-				}
+        if (movie.duration.length === 1) {
+            let hours = parseInt(movie.duration); // select hours
+            movie.duration = (hours * 60); // convert hours and add minutes
+        } else if (movie.duration.length === 2) {
+            let minutes = parseInt(movie.duration);
+            movie.duration = minutes;
+        } else {
+            let minutes = parseInt(movie.duration.slice(-2)); // select minutes
+            let hours = parseInt(movie.duration[0]); // select hours
+            movie.duration = (hours * 60) + minutes; // convert hours and add minutes
+        }
     });
-		return copyMovies
+	return copyMovies
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
@@ -118,8 +118,8 @@ function bestYearAvg(movies) {
     });
 
     moviesByYear.sort(function(a,b) {
-        if (a.average > b.average) {return -1}
-        else if (a.average < b.average) {return 1}
+        if (a.average > b.average) { return -1 }
+        else if (a.average < b.average) { return 1 }
         else { // if same average, order by year
             if(a.year < b.year) { return -1; }
             if(a.title > b.title) { return 1; }
