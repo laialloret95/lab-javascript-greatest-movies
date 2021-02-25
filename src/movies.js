@@ -6,7 +6,7 @@ function getAllDirectors(movies) {
         return movie.director;
     });
     return allDirectors;
-}
+};
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 function uniqueDirectors(movies) {
@@ -15,7 +15,7 @@ function uniqueDirectors(movies) {
         return arr.indexOf(director) == index;
     });
     return uniqueDirectors
-}
+};
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
@@ -23,17 +23,17 @@ function howManyMovies(movies) {
         return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");
     });
     return spielbergDramas.length;
-}
+};
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
 	if (movies.length > 0) {
         let sumRates = movies.reduce(function(acc,movie) {
-                    if(movie.rate) {
+            if(movie.rate) {
                 return acc + movie.rate;
-                    } else {
-                        return acc + 0;
-                    };
+            } else {
+                return acc + 0;
+            };
         }, 0);
         let averageRates = sumRates / movies.length;
         return Math.round(averageRates * 100) / 100;
@@ -48,7 +48,7 @@ function dramaMoviesRate(movies) {
     });
     let dramaMoviesAverage = ratesAverage(dramaMovies);
     return dramaMoviesAverage;
-}
+};
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
@@ -59,10 +59,10 @@ function orderByYear(movies) {
             if(a.title < b.title) { return -1; }
             if(a.title > b.title) { return 1; }
             return 0;
-        }
+        };
     });
     return sortedByYear
-}
+};
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
@@ -96,7 +96,7 @@ function turnHoursToMinutes(movies) {
         }
     });
 	return copyMovies
-}
+};
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies) {
@@ -129,4 +129,4 @@ function bestYearAvg(movies) {
 
     let BestYear = moviesByYear[0];
     return `The best year was ${BestYear.year} with an average rate of ${BestYear.average}`
-}
+};
