@@ -55,7 +55,7 @@ function orderByYear(movies) {
     let sortedByYear = movies.slice().sort(function(a,b){
         if (a.year < b.year) { return -1 } 
         else if (a.year > b.year){ return 1} 
-        else { // if years are the same order aphabetically by title
+        else { // if years are the same, order aphabetically by title
             if(a.title < b.title) { return -1; }
             if(a.title > b.title) { return 1; }
             return 0;
@@ -120,9 +120,13 @@ function bestYearAvg(movies) {
     moviesByYear.sort(function(a,b) {
         if (a.average > b.average) {return -1}
         else if (a.average < b.average) {return 1}
-        return 0;
+        else { // if same average, order by year
+            if(a.year < b.year) { return -1; }
+            if(a.title > b.title) { return 1; }
+            return 0;
+        }
     });
 
     let BestYear = moviesByYear[0];
-    return `The best year was ${BestYear.year} with an average rate of  ${BestYear.average}`
+    return `The best year was ${BestYear.year} with an average rate of ${BestYear.average}`
 }
